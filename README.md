@@ -1,4 +1,4 @@
-# beanstalk_tools
+# beanstalkd_tools
 
 Tools that will make your life easier when dealing with beanstalkd.
 
