@@ -10,7 +10,11 @@ def delete_jobs(i, host, port, tube, type):
     bs.use(tube)
 
     while True:
-        job = bs.peek_buried()
+        if type == "delayed":
+            job = bs.peek_delayed()
+        else:
+            job = bs.peek_buried()
+
         if job is None:
             break
 
@@ -22,10 +26,10 @@ def delete_jobs(i, host, port, tube, type):
 
 
 if __name__ == '__main__':
-    host = argv[0]
-    port = int(argv[1])
-    tube = argv[2]
-    type = argv[3]
+    host = argv[1]
+    port = int(argv[2])
+    tube = argv[3]
+    type = argv[4]
 
     for i in range(5):
         t = Thread(target=delete_jobs, args=(i, host, port, tube, type))
